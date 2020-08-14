@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Register from './containers/Register';
 import './App.css';
 
-// import Todo from './containers/Todo';
-// import Timer from './containers/Timer'
 
 
 class App extends Component {
@@ -15,8 +13,6 @@ class App extends Component {
         </div>
 
         <Register />
-        {/* <Todo /> */}
-        {/* <Timer /> */}
       </div>
     );
   }

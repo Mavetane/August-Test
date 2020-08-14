@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ADD_TODO } from '../redux/actions/actionTypes';
 
-/**
- * 
- */
+
 const Todo = () => {
   const [listOfTodos, setTodo] = useState({ todo: "", status: false })
   const dispatch = useDispatch();
