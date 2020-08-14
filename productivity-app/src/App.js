@@ -14,7 +14,7 @@ class App extends Component {
           <h2>Productivity App</h2>
         </div>
         <Register />
-        {/* <Todo /> */}
+        <Todo />
         <Timer />
 
       </div>

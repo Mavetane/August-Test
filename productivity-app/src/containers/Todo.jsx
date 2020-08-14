@@ -1,33 +1,37 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ADD_TODO } from '../redux/actions/actionTypes';
 
-
+/**
+ * 
+ */
 const Todo = () => {
-  const [list, setList] = useState({ todo: "", status: false })
-
-
-  const onSubmit = (e) => {
+  const [listOfTodos, setTodo] = useState({ todo: "", status: false })
+  const dispatch = useDispatch();
+  const todos = useSelector(state => state.todos);
+  const onSubmit = e => {
     e.preventDefault();
-    console.log("formInfo", list)
-
+    console.log("todo", listOfTodos)
   }
-
-  const handleChange = (e) => {
-    setList({
-      ...list, [e.target.name]: e.target.value
+  const handleChange = e => {
+    setTodo({
+      ...listOfTodos, [e.target.name]: e.target.value
     })
-
-    return (
-      <div>
-        <h3>Register</h3>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <input type="text" value={list.todo} onChange={handleChange} name="todo" />
-          <input type="check" value={list.status} onChange={handleChange} name="status" />
-          <button>Submit</button>
-        </form>
-      </div>
-    )
   }
+  return (
+    <div>
+      <h4>Add Todo</h4>
+      <form onSubmit={(e) => { onSubmit(e) }}>
+        <input type="text" value={listOfTodos.todo} onChange={handleChange} name="todo" />
+        <button onClick={() => dispatch({ type: ADD_TODO, payload: listOfTodos })}>Add Todo</button>
+      </form>
+      <br />
+      <h4>List of Todos</h4>
+      {/* <label>{todos}</label> */}
+    </div>
+  )
 }
+
 
 export default Todo;
