@@ -21,7 +21,7 @@ const Register = () => {
   const saveUser = () => {
     return async dispatch => {
       try {
-        const { data } = await axios.post("http://localhost:3002/users", { formInfo })
+        const { data } = await axios.post("mongodb+srv://Mavetane:Lindile25@firstcluster-vbvoq.mongodb.net/firstCluster?retryWrites=true&w=majority", { formInfo })
         console.log("data", data)
         dispatch({
           type: ADD_USER,
