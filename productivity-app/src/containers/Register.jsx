@@ -1,8 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { ADD_USER } from '../redux/actions/actionTypes';
+
 
 const Register = () => {
   const [formInfo, setFormInfo] = useState({ email: "", password: "" })
+  const users = useSelector(state => state.users)
+  const dispatch = useDispatch();
+
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +29,7 @@ const Register = () => {
       <form onSubmit={(e) => onSubmit(e)}>
         <input type="email" value={formInfo.email} onChange={handleChange} name="email" />
         <input type="password" value={formInfo.password} onChange={handleChange} name="password" />
-        <button>Submit</button>
+        <button onClick={() => dispatch({ type: ADD_USER, payload: formInfo })}>Submit</button>
       </form>
     </div>)
 }
