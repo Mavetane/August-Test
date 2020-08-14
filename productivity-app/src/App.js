@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Register from './containers/Register';
 import Todo from './containers/Todo';
+import Timer from './containers/Timer'
 
 
 class App extends Component {
@@ -14,6 +15,8 @@ class App extends Component {
         </div>
         <Register />
         {/* <Todo /> */}
+        <Timer />
+
       </div>
     );
   }
