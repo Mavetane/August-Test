@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Register from './containers/Register'
+import Register from './containers/Register';
+import Todo from './containers/Todo';
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
           <h2>Productivity App</h2>
         </div>
         <Register />
+        {/* <Todo /> */}
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ADD_USER } from '../redux/actions/actionTypes';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -17,6 +18,22 @@ const Register = () => {
       email: "", password: ""
     })
   }
+  const saveUser = () => {
+    return async dispatch => {
+      try {
+        const { data } = await axios.post("http://localhost:3002/users", { formInfo })
+        console.log("data", data)
+        dispatch({
+          type: ADD_USER,
+          payload: data
+        })
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+  }
+
   const handleChange = (e) => {
     setFormInfo({
       ...formInfo, [e.target.name]: e.target.value
@@ -29,7 +46,7 @@ const Register = () => {
       <form onSubmit={(e) => onSubmit(e)}>
         <input type="email" value={formInfo.email} onChange={handleChange} name="email" />
         <input type="password" value={formInfo.password} onChange={handleChange} name="password" />
-        <button onClick={() => dispatch({ type: ADD_USER, payload: formInfo })}>Submit</button>
+        <button onClick={() => saveUser()}>Submit</button>
       </form>
     </div>)
 }

@@ -7,6 +7,7 @@
 redux@next
 react-redux
 redux-thunk
+axios
 
 
 ### backend 
@@ -19,3 +20,6 @@ bodyParser
 cors
 bcrypt
 nodemon
+
+### mongodb
+install mongodb shell and write the connection string for local host
