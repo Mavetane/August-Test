@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ADD_USER } from '../redux/actions/actionTypes';
 import axios from 'axios';
+import Todo from './Todo';
+import Timer from './Timer';
 
 
 const Register = () => {
   const [formInfo, setFormInfo] = useState({ email: "", password: "" })
+  const [status, setStatus] = useState(false)
   const users = useSelector(state => state.users)
   const dispatch = useDispatch();
 
@@ -17,18 +20,18 @@ const Register = () => {
     setFormInfo({
       email: "", password: ""
     })
+    setStatus(true)
   }
-  const saveUser = () => {
+  const addUser = (formInfo) => {
     return async dispatch => {
       try {
-        const { data } = await axios.post("mongodb+srv://Mavetane:Lindile25@firstcluster-vbvoq.mongodb.net/firstCluster?retryWrites=true&w=majority", { formInfo })
-        console.log("data", data)
+        console.log("formInfo", { formInfo })
+        await axios.post("http://localhost:3002/users", { ...formInfo })
         dispatch({
           type: ADD_USER,
-          payload: data
+          payload: { formInfo }
         })
-      }
-      catch (e) {
+      } catch (e) {
         console.log(e)
       }
     }
@@ -43,11 +46,16 @@ const Register = () => {
   return (
     <div>
       <h1>Register</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input type="email" value={formInfo.email} onChange={handleChange} name="email" />
-        <input type="password" value={formInfo.password} onChange={handleChange} name="password" />
-        <button onClick={() => saveUser()}>Submit</button>
-      </form>
+      {status == false ?
+        <form onSubmit={(e) => onSubmit(e)}>
+          <input type="email" value={formInfo.email} onChange={handleChange} name="email" />
+          <input type="password" value={formInfo.password} onChange={handleChange} name="password" />
+          <button onClick={() => addUser()}>Submit</button>
+        </form> :
+        <div>
+          <Todo />
+          <Timer />
+        </div>}
     </div>)
 }
 

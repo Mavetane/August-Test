@@ -12,7 +12,7 @@ const Todo = () => {
   const todos = useSelector(state => state.todos);
   const onSubmit = e => {
     e.preventDefault();
-    console.log("todo", listOfTodos)
+    setTodo({ todo: "", status: true })
   }
   const handleChange = e => {
     setTodo({
@@ -27,8 +27,6 @@ const Todo = () => {
         <button onClick={() => dispatch({ type: ADD_TODO, payload: listOfTodos })}>Add Todo</button>
       </form>
       <br />
-      <h4>List of Todos</h4>
-      {/* <label>{todos}</label> */}
     </div>
   )
 }
